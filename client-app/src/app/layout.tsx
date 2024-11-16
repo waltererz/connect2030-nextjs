@@ -4,7 +4,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import ProgressBar from '@/components/ProgressBar';
 import { theme } from '@/styles/theme';
 import NavBar from '@/components/layout/NavBar';
-import Body from '@/components/layout/Body';
 import '@/styles/globals.css';
 
 // 최상위 레이아웃에서 지정하는 메타데이터
@@ -22,6 +21,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
+  // 상단 내비게이션바를 가져옴
   const navBar = await NavBar();
 
   return (
@@ -31,9 +31,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           <ProgressBar>
             <AppRouterCacheProvider>
               {navBar}
-              <Body>
-                {children}
-              </Body>
+              {children}
             </AppRouterCacheProvider>
           </ProgressBar>
         </ThemeProvider>

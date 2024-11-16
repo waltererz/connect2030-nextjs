@@ -23,7 +23,7 @@ export default function NavBarMenus(): React.ReactNode {
             {site_structure.map((item, index) => (
                 <Chip
                     key={`mainitem-${index}`}
-                    icon={item.icon ? item.icon : undefined}
+                    icon={item.icon ? <item.icon /> : undefined}
                     label={item.label}
                     clickable={true}
                     className={current_path[1] == item.id ? 'selected' : ''}

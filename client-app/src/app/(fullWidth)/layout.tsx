@@ -1,9 +1,8 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Drawer from './Drawer';
-import Content from './Content';
+import Content from '@/components/layout/Content';
 
-export default function Body({ children }: Readonly<{ children: React.ReactNode }>): React.ReactNode {
+export default function DefaultLayout({ children }: { children: Readonly<React.ReactNode> }) {
     return (
         <Box sx={{
             display: 'flex',
@@ -12,8 +11,7 @@ export default function Body({ children }: Readonly<{ children: React.ReactNode 
             height: '100vh',
             pt: '88px',
         }}>
-            <Drawer />
-            <Content>{children}</Content>
+            <Content breadcrumbs={false} fullWidth>{children}</Content>
         </Box>
     );
 }

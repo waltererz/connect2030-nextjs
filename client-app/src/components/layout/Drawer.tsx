@@ -8,9 +8,9 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import FaceIcon from '@mui/icons-material/Face';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import TurnLeftIcon from '@mui/icons-material/TurnLeft';
+import WidgetsIcon from '@mui/icons-material/Widgets';
 import { ISiteStructure, site_structure } from '@/site.structure';
 import { findById } from '@/utils/site.structure';
 
@@ -32,7 +32,7 @@ export default function Drawer(): React.ReactNode {
     // 현재 페이지의 사이드 메뉴를 가져옴
     useEffect(() => {
         // 현재 페이지에 사이드메뉴가 존재하는지 확인
-        const result = findById(site_structure, current_path[1]);
+        const result = findById(site_structure, current_path[1] == '' ? '@' : current_path[1]);
 
         // 자식 메뉴가 존재하는지 확인 후 상태에 저장
         if (Array.isArray(result?.children)) {
@@ -69,7 +69,14 @@ export default function Drawer(): React.ReactNode {
                             selected={current_path[2] == item.id || (typeof current_path[2] != 'string' && item.id == '@') ? true : false}
                             disableRipple
                             disableTouchRipple
-                            onClick={!Array.isArray(item.children) ? () => { const id = item.id == '@' ? '' : item.id; router.push(`/${current_path[1]}/${id}`) } : undefined}
+                            onClick={
+                                !Array.isArray(item.children) ?
+                                    () => {
+                                        const id = item.id == '@' ? '' : item.id;
+                                        const path = current_path[1] == '' ? id : `/${current_path[1]}/${id}`;
+                                        router.push(path);
+                                    } : undefined
+                            }
                             sx={{
                                 mb: 2,
                                 borderRadius: '40px',
@@ -86,9 +93,15 @@ export default function Drawer(): React.ReactNode {
                             <ListItemIcon sx={{
                                 minWidth: '35px',
                             }}>
-                                <FaceIcon sx={{
-                                    color: current_path[2] == item.id || (typeof current_path[2] != 'string' && item.id == '@') ? '#ffffff' : 'initial',
-                                }} />
+                                {item.icon != undefined ? (
+                                    <item.icon sx={{
+                                        color: current_path[2] == item.id || (typeof current_path[2] != 'string' && item.id == '@') ? '#ffffff' : 'initial',
+                                    }} />
+                                ) : (
+                                    <WidgetsIcon sx={{
+                                        color: current_path[2] == item.id || (typeof current_path[2] != 'string' && item.id == '@') ? '#ffffff' : 'initial',
+                                    }} />
+                                )}
                             </ListItemIcon>
                             <ListItemText
                                 primary={item.label}

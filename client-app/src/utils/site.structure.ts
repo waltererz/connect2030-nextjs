@@ -1,4 +1,4 @@
-import { ISiteStructure } from '@/site-structure';
+import { ISiteStructure } from '@/site.structure';
 
 interface ISiteStructureWithPath extends ISiteStructure {
   path: string[];

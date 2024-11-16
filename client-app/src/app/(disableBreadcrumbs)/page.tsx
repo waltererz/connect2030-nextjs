@@ -30,7 +30,7 @@ export default function Page() {
           fontSize: '3.0rem',
         }}
       >
-        Connect 2030 Project
+        Connect 2030
       </Box>
       <Box
         component="div"
@@ -39,7 +39,7 @@ export default function Page() {
           fontSize: '2.0rem',
         }}
       >
-        정책결정과정에 청년의 참여 확대
+        테스트 페이지
       </Box>
       <Box sx={{ mt: '50px' }}>
         {dummy.map((article, index) => (

@@ -25,9 +25,8 @@ export default function Page() {
     <>
       <Box
         component="div"
-        className="blackhansans"
+        className="special-font"
         sx={{
-          fontStyle: 'italic',
           fontSize: '3.0rem',
         }}
       >
@@ -35,10 +34,8 @@ export default function Page() {
       </Box>
       <Box
         component="div"
-        className="blackhansans"
+        className="special-font"
         sx={{
-          mt: 1,
-          fontStyle: 'italic',
           fontSize: '2.0rem',
         }}
       >
@@ -62,6 +59,7 @@ export default function Page() {
                 width: '64px',
                 height: '64px',
                 borderRadius: '17px',
+                fontSize: '1.8rem',
               }}
             >
               H
@@ -69,13 +67,16 @@ export default function Page() {
             <Box sx={{ ml: '15px', flexGrow: 1, }}>
               <Box sx={{
                 fontWeight: 900,
-                fontSize: '1.0rem',
+                fontSize: '1.2rem',
+                textAlign: 'justify',
               }}>
                 {article.subject}
               </Box>
               <Box sx={{
-                fontSize: '0.8rem',
+                fontSize: '1.0rem',
+                lineHeight: 1.1,
                 color: '#777777',
+                textAlign: 'justify',
               }}>
                 {article.content}
               </Box>

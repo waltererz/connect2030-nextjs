@@ -10,6 +10,9 @@ export const theme = createTheme({
             main: '#4212b1',
             dark: '#230073',
             contrastText: '#ffffff',
-        }
-    }
+        },
+    },
+    typography: {
+        fontFamily: `'Do Hyeon', 'Roboto', 'Noto Sans KR', 'Arial', sans-serif`,
+    },
 });

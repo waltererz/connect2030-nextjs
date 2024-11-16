@@ -3,7 +3,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import ProgressBar from '@/components/ProgressBar';
 import { theme } from '@/styles/theme';
-import Header from '@/components/layout/Header';
+import NavBar from '@/components/layout/NavBar';
 import Body from '@/components/layout/Body';
 import '@/styles/globals.css';
 
@@ -20,14 +20,17 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+
+  const navBar = await NavBar();
+
   return (
     <html lang="ko">
       <body className="antialiased">
         <ThemeProvider theme={theme}>
           <ProgressBar>
             <AppRouterCacheProvider>
-              <Header />
+              {navBar}
               <Body>
                 {children}
               </Body>

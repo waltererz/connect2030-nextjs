@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: '청년들을 위한 정책토의',
+    title: '2030 자문단이란?',
 }
 
 export default function Page() {

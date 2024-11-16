@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: '청년들을 위한 정책토의',
+    title: '서비스 소개',
 }
 
 export default function Page() {

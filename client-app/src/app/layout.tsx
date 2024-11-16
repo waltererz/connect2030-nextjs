@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import ProgressBar from '@/components/ProgressBar';
 import { theme } from '@/styles/theme';
 import NavBar from '@/components/layout/NavBar';
+import '@fontsource/inter';
 import '@/styles/globals.css';
 
 // 최상위 레이아웃에서 지정하는 메타데이터

@@ -1,35 +1,14 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Breadcrumbs from './Breadcrumbs';
 
 export default function Content({ children, fullWidth = false, breadcrumbs = true }: { children: React.ReactNode, fullWidth?: boolean, breadcrumbs?: boolean }): React.ReactNode {
     return (
         <Box sx={{
-            ml: fullWidth != undefined && fullWidth ? '24px' : '348px',
+            ml: (fullWidth != undefined && fullWidth) ? '24px' : { xs: '24px', lg: '348px' },
             flexGrow: 1,
         }}>
-            {breadcrumbs != undefined && breadcrumbs && (
-                <Box sx={{
-                    height: '47px',
-                }}>
-                    <Typography component="div" sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignContent: 'center',
-                    }}>
-                        <ArrowBackIcon sx={{
-                            mr: '7px',
-                            fontSize: '1.4rem',
-                        }} />
-                        <Typography component="div" sx={{
-                            fontSize: '1.1rem',
-                            fontWeight: 400,
-                            boxSizing: 'border-box',
-                        }}>정책제안 목록 / 정책제안 @2024-2</Typography>
-                    </Typography>
-                </Box>
-            )}
+            {breadcrumbs != undefined && breadcrumbs && <Breadcrumbs />}
             <Box sx={{
                 height: breadcrumbs != undefined && breadcrumbs ? 'calc(100% - 47px)' : '100%',
                 boxSizing: 'border-box',

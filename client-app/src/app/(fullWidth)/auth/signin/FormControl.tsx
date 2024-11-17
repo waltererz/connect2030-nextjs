@@ -9,13 +9,14 @@ import Button from '@mui/joy/Button';
 import { supabaseSignIn } from '@/utils/supabase/signin';
 
 export default function SignInFormControl(): React.ReactNode {
-    // 로그인 계정 입력 값을 확인하기 위핸 상태
+    // 로그인 계정 입력 값을 확인하기 위한 상태
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
     // 로그인 중 상태를 확인하기 위한 상태
     const [pending, setPending] = useState<boolean>(false);
 
+    // 양식 전달 함수
     const handleSubmit = async () => {
         // 이메일과 패스워드가 입력되었는지 확인
         if (email.length < 1 || password.length < 1) {

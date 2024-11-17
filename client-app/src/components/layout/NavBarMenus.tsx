@@ -29,7 +29,7 @@ export default function NavBarMenus(): React.ReactNode {
                     className={current_path[1] == item.id ? 'selected' : ''}
                     onClick={() => router.push(`/${item.id}`)}
                     sx={{
-                        display: item.display ? 'flex' : 'none',
+                        display: { xs: 'none', lg: (item.display ? 'flex' : 'none') },
                         minWidth: '100px',
                         height: '40px',
                         mr: '12px',

@@ -12,7 +12,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import TurnLeftIcon from '@mui/icons-material/TurnLeft';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import { ISiteStructure, site_structure } from '@/site.structure';
-import { findById, findByIdOnly } from '@/utils/site.structure';
+import { findByIdOnlyOne } from '@/utils/site.structure';
 
 export default function Drawer(): React.ReactNode {
     // 사이드메뉴를 저장하는 상태 생성
@@ -32,7 +32,7 @@ export default function Drawer(): React.ReactNode {
     // 현재 페이지의 사이드 메뉴를 가져옴
     useEffect(() => {
         // 현재 페이지에 사이드메뉴가 존재하는지 확인
-        const result = findByIdOnly(site_structure, current_path[1] == '' ? '@' : current_path[1]);
+        const result = findByIdOnlyOne(site_structure, current_path[1] == '' ? '@' : current_path[1]);
 
         // 자식 메뉴가 존재하는지 확인 후 상태에 저장
         if (Array.isArray(result?.children)) {
@@ -45,6 +45,7 @@ export default function Drawer(): React.ReactNode {
 
     return (
         <Box sx={{
+            display: { xs: 'none', lg: 'block' },
             position: 'fixed',
             flexGrow: 0,
             width: '300px',

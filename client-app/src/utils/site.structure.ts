@@ -4,7 +4,7 @@ interface ISiteStructureWithPath extends ISiteStructure {
   path: string[];
 }
 
-export function findByIdOnly(data: ISiteStructure[], targetId: string): ISiteStructure | null {
+export function findByIdOnlyOne(data: ISiteStructure[], targetId: string): ISiteStructure | null {
   for (const item of data) {
     if (item.id === targetId) {
       // 원하는 id를 찾은 경우 해당 객체를 반환

@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import NavBarAvatar from './NavBarAvatar';
 import NavBarMenus from './NavBarMenus';
 import NavBarOptions from './NavBarOptions';
+import NavBarSidebarButton from './NavBarSidebarButton';
 
 export default async function NavBar(): Promise<React.ReactNode> {
 
@@ -31,6 +32,7 @@ export default async function NavBar(): Promise<React.ReactNode> {
                 flexDirection: 'row',
                 flexGrow: 1,
             }}>
+                <NavBarSidebarButton />
                 <NavBarAvatar />
                 <NavBarMenus />
             </Box>

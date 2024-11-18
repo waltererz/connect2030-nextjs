@@ -22,7 +22,7 @@ export default function NavBarAvatar(): React.ReactNode {
                 fontWeight: 600,
                 borderRadius: '50px',
                 transition: 'opacity 0.2s ease-in',
-                fontSize: '0.85rem',
+                fontSize: '0.95rem',
                 ':hover': {
                     backgroundColor: 'var(--primary-light)',
                     opacity: 0.8,

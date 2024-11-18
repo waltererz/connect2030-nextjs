@@ -95,7 +95,7 @@ export default function Breadcrumbs(): React.ReactNode {
                 <Typography
                     component="div"
                     sx={{
-                        mt: '-1px',
+                        mt: '-2px',
                         fontSize: '1.1rem',
                         fontWeight: 400,
                         boxSizing: 'border-box',

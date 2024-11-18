@@ -108,7 +108,7 @@ export default function Drawer(): React.ReactNode {
                                 primary={item.label}
                                 sx={{
                                     '& .MuiTypography-root': {
-                                        pt: '2px',
+                                        pt: '1px',
                                         fontSize: '1.2rem',
                                     }
                                 }}

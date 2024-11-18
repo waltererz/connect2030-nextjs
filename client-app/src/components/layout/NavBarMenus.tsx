@@ -54,7 +54,7 @@ export default function NavBarMenus(): React.ReactNode {
                         },
                         '& .MuiChip-label': {
                             pl: '15px',
-                            fontSize: '1.0rem',
+                            fontSize: '1.05rem',
                             fontWeight: 400,
                         }
                     }}

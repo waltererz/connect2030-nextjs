@@ -13,6 +13,6 @@ export const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: `'Do Hyeon', 'Roboto', 'Noto Sans KR', 'Arial', sans-serif`,
+        fontFamily: `'Noto Sans KR', 'Roboto', 'Arial', sans-serif`,
     },
 });

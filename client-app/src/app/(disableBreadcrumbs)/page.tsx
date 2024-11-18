@@ -25,7 +25,6 @@ export default function Page() {
     <>
       <Box
         component="div"
-        className="special-font"
         sx={{
           fontSize: '3.0rem',
         }}
@@ -34,7 +33,6 @@ export default function Page() {
       </Box>
       <Box
         component="div"
-        className="special-font"
         sx={{
           fontSize: '2.0rem',
         }}

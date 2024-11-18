@@ -1,157 +1,106 @@
 'use client'
 
-import React from 'react';
-import clsx from 'clsx';
-import { useRouter } from 'next-nprogress-bar';
-import { styled, useTheme } from '@mui/material/styles';
+import React, { useState, useEffect } from 'react';
+import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { useTreeItem2, UseTreeItem2Parameters } from '@mui/x-tree-view/useTreeItem2';
-import { SvgIconProps } from '@mui/material/SvgIcon';
-import { TreeItem2Content, TreeItem2GroupTransition, TreeItem2IconContainer, TreeItem2Root } from '@mui/x-tree-view/TreeItem2';
-import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
-import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
+import { CustomTreeItem, EndIcon } from './MobileDrawerTreeView';
+import { ISiteStructure, site_structure } from '@/site.structure';
 
-// 트리 스타일 적용을 위한 react 모듈 확장
-declare module 'react' {
-    interface CSSProperties {
-        '--tree-view-color'?: string;
-        '--tree-view-bg-color'?: string;
-    }
+// 파라미터로 넘겨진 오브젝트를 가공하는 함수 (2단계: 재귀함수로 처리)
+const resolveDuplicateIds = (targetData: ISiteStructure[], parent: string = '') => {
+    // 반환 값
+    const newData: ISiteStructure[] = [];
+
+    // 부모 노드 ID가 @인 경우 공백으로 처리
+    if (parent == '@') parent = '';
+
+    targetData.map((item, index) => {
+        // item 속성 중 display가 false인 경우 출력되지 않아야 하므로 return
+        if (!item.display) return;
+
+        // 새로운 아이템 객체
+        // 복제하지 않으면 기존 객체를 참조하여 구조 자체가 변경되므로 반드시 복제하여 사용
+        // 중첩 오브젝트는 재귀함수를 통해 처리하므로 깊은 복제는 필요하지 않음
+        let newItem: ISiteStructure = { ...item };
+        let newChildren: ISiteStructure[] = [];
+
+        // 기존의 ID와 부모 노드 ID를 이용하여 페이지 경로(path)를 만들고, index를 ID에 입력
+        // path에서 @는 공백으로 처리
+        const itemId = !parent ? `${item.id}-${index}` : `${parent}-${item.id}-${index}`;
+        const itemPath = item.id == '@' ? `/${parent}` : !parent ? `/${item.id}` : `/${parent}/${item.id}`;
+
+        // 자식 노드가 있는 경우 재귀함수 실행
+        if (Array.isArray(item.children)) {
+            newChildren = resolveDuplicateIds(item.children, !parent ? `${item.id}` : `${parent}${item.id == '@' ? '' : `/${item.id}`}`);
+        }
+
+        // 수정된 내용을 기존의 오브젝트에 반영하고 newData에 push
+        newItem.id = itemId;
+        newItem.path = itemPath;
+        newItem.children = newChildren;
+
+        newData.push(newItem);
+    });
+
+    return newData;
 }
 
-// 트리 컴포넌트 확장
-// 모바일용 Drawer 메뉴에 배경색, 아이콘 등을 적용할 수 있도록 해줌
-interface StyledTreeItemProps extends Omit<UseTreeItem2Parameters, 'rootRef'>, React.HTMLAttributes<HTMLLIElement> {
-    bgColor?: string;
-    bgColorForDarkMode?: string;
-    color?: string;
-    colorForDarkMode?: string;
-    path?: string;
-    labelIcon: React.ElementType<SvgIconProps> | undefined;
-    labelInfo?: string;
-    handler?: () => void;                   // toggleDrawer
-}
+// 모바일에서만 사용되는 Drawer 생성
+export default function MobileDrawer({ open, handler }: { open: boolean, handler: () => void }): React.ReactNode {
 
-const CustomTreeItemRoot = styled(TreeItem2Root)(({ theme }) => ({
-    color: theme.palette.text.secondary,
-}));
+    // 모바일용 Drawer 사이트 구조 state
+    const [siteStructure, setSiteStructure] = useState<ISiteStructure[]>([]);
 
-const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
-    marginBottom: theme.spacing(0.3),
-    color: theme.palette.text.secondary,
-    paddingRight: theme.spacing(1),
-    '&.expanded': {
-        fontWeight: theme.typography.fontWeightRegular,
-    },
-    '&:hover': {
-        backgroundColor: theme.palette.action.hover,
-    },
-    '&.focused, &.selected, &.selected.focused': {
-        backgroundColor: `var(--tree-view-bg-color, ${theme.palette.action.selected})`,
-        color: 'var(--tree-view-color)',
-    }
-}));
-
-const CustomTreeItemIconContainer = styled(TreeItem2IconContainer)(({ theme }) => ({
-    marginRight: theme.spacing(1),
-}));
-
-const CustomTreeItemGroupTransition = styled(TreeItem2GroupTransition)(({ theme }) => ({
-    marginLeft: 0,
-    [`& .content`]: {
-        paddingLeft: theme.spacing(2),
-    }
-}));
-
-// 공백 컴포넌트
-export const EndIcon = (): React.ReactNode => {
-    return <div style={{ width: 24 }} />;
-}
-
-// 커스텀 트리 아이템 컴포넌트
-// 모바일용 Drawer에 사용되며, 추후 디자인 수정 가능
-export const CustomTreeItem = React.forwardRef(function CustomTreeItem(props: StyledTreeItemProps, ref: React.Ref<HTMLLIElement>) {
-
-    // SPA를 위한 라우터 hook
-    const router = useRouter();
-
-    // 공통 디자인 적용을 위한 테마 hook 사용
-    const theme = useTheme();
-
-    // 각각의 파라미터를 각각의 변수에 저장
-    const {
-        id,
-        itemId,
-        label,
-        disabled,
-        children,
-        bgColor,
-        color,
-        path,
-        handler,
-        labelIcon: LabelIcon,
-        labelInfo,
-        colorForDarkMode,
-        bgColorForDarkMode,
-        ...other
-    } = props;
-
-    // 커스텀 트리의 주요 파라미터를 가져옴
-    const {
-        getRootProps,
-        getContentProps,
-        getIconContainerProps,
-        getLabelProps,
-        getGroupTransitionProps,
-        status
-    } = useTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
-
-    // 색상 지정 (다크 모드 적용)
-    const style = {
-        '--tree-view-color': theme.palette.mode !== 'dark' ? color : colorForDarkMode,
-        '--tree-view-bg-color': theme.palette.mode !== 'dark' ? bgColor : bgColorForDarkMode
-    }
+    // 최초 1회만 실행
+    // MUI X Tree View 사용을 위해 사이트 구조(site_structure)에서 중복되는 ID를 재작성
+    // ID를 유니크하게 새로 작성하고, 사이트 경로는 path에 저장함 - 재귀함수
+    // 주의! 2단계 구조까지 지원함
+    useEffect(() => {
+        setSiteStructure(resolveDuplicateIds(site_structure));
+    }, []);
 
     return (
-        <TreeItem2Provider itemId={itemId}>
-            <CustomTreeItemRoot {...getRootProps({ ...other, style })}>
-                <CustomTreeItemContent
-                    {...getContentProps({
-                        className: clsx('content', {
-                            expanded: status.expanded,
-                            selected: status.selected,
-                            focused: status.focused,
-                        }),
-                    })}
-                >
-                    <CustomTreeItemIconContainer {...getIconContainerProps()}>
-                        <TreeItem2Icon status={status} />
-                    </CustomTreeItemIconContainer>
-                    <Box sx={{
-                        display: 'flex',
+        <Drawer
+            open={open}
+            onClose={handler}
+            aria-hidden={!open ? true : false}
+        >
+            <Box sx={{
+                width: '300px',
+            }}>
+                <Box sx={{
+                    height: '60px',
+                    boxSizing: 'border-box',
+                    p: 2,
+                    textAlign: 'center',
+                    fontWeight: 600,
+                }}>
+                    CONNECT 2030
+                </Box>
+                <SimpleTreeView
+                    aria-label="connect2030-mobile"
+                    slots={{
+                        expandIcon: ArrowRightIcon,
+                        collapseIcon: ArrowDropDownIcon,
+                        endIcon: EndIcon,
+                    }}
+                    sx={{
                         flexGrow: 1,
-                        alignItems: 'center',
-                        p: 0.5,
-                        pr: 0,
-                    }}>
-                        {LabelIcon ? <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} /> : <Box color="inherit" sx={{ mr: 1 }} />}
-                        <Typography {...getLabelProps({
-                            variant: 'body2',
-                            sx: {
-                                display: 'flex',
-                                fontWeight: 'inherit',
-                                flexGrow: 1,
-                                fontSize: '1.0rem',
-                            }
-                        })} onClick={() => { path && router.push(path); handler && handler(); }} />
-                        <Typography variant="caption" color="inherit">{labelInfo}</Typography>
-                    </Box>
-                </CustomTreeItemContent>
-                {children && (
-                    <CustomTreeItemGroupTransition {...getGroupTransitionProps()} />
-                )}
-            </CustomTreeItemRoot>
-        </TreeItem2Provider>
-    );
-});
+                        maxWidth: '400px',
+                    }}
+                >
+                    {siteStructure.map((item, index) => (
+                        <CustomTreeItem handler={handler} key={`1-${index}`} itemId={item.id} label={item.label} labelIcon={item.icon} path={item.path}>
+                            {item.children && item.children.map((subitem, subindex) => (
+                                <CustomTreeItem handler={handler} key={`2-${subindex}`} itemId={subitem.id} label={subitem.label} labelIcon={subitem.icon} path={subitem.path} />
+                            ))}
+                        </CustomTreeItem>
+                    ))}
+                </SimpleTreeView>
+            </Box>
+        </Drawer>
+    )
+}

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
-import ProgressBar from '@/components/ProgressBar';
 import { theme } from '@/styles/theme';
+import ProgressBar from '@/components/layout/ProgressBar';
 import NavBar from '@/components/layout/NavBar';
+import Body from '@/components/layout/Body';
 import '@fontsource/inter';
 import '@/styles/globals.css';
 
@@ -31,8 +32,10 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <ThemeProvider theme={theme}>
           <ProgressBar>
             <AppRouterCacheProvider>
-              {navBar}
-              {children}
+              <Body>
+                {navBar}
+                {children}
+              </Body>
             </AppRouterCacheProvider>
           </ProgressBar>
         </ThemeProvider>

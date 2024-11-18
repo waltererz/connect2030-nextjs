@@ -1,10 +1,16 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
+// 로그인 여부를 확인하고 페이지 접근 제어
 export async function updateSession(request: NextRequest) {
+
+    // 현재 경로를 구함
     const pathname = request.nextUrl.pathname;
+
+    // HTTP Response를 가져옴
     let supabaseResponse = NextResponse.next({ request });
 
+    // Supabase 인스턴스 생성
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -24,6 +30,8 @@ export async function updateSession(request: NextRequest) {
         }
     )
 
+    // Supabase에서 사용자 정보를 가져옴
+    // 로그인되지 않은 경우 null 반환
     const { data: { user } } = await supabase.auth.getUser();
 
     // 사용자 로그인이 안 되었을 때 접근을 통제해야 하는 페이지 또는 경로

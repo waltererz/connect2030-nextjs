@@ -1,7 +1,7 @@
 import { ISiteStructure } from '@/site.structure';
 
 interface ISiteStructureWithPath extends ISiteStructure {
-  path: string[];
+  paths: string[];
 }
 
 export function findByIdOnlyOne(data: ISiteStructure[], targetId: string): ISiteStructure | null {
@@ -52,7 +52,7 @@ export function findByIdWithPath(
 
     if (item.id === targetId) {
       // 경로를 포함한 객체 반환
-      return { ...item, path: currentPath };
+      return { ...item, paths: currentPath };
     }
 
     if (item.children) {

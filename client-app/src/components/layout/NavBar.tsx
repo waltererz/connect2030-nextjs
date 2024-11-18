@@ -16,13 +16,13 @@ export default async function NavBar(): Promise<React.ReactNode> {
         <Box sx={{
             position: 'fixed',
             top: 0,
-            left: 0,
             display: 'flex',
             flexDirection: 'row',
             background: 'rgba(255,255,255,0)',
             backdropFilter: 'blur(6px)',
             alignItems: 'center',
             width: '100%',
+            maxWidth: '1536px',                        // Extra Large
             boxSizing: 'border-box',
             p: 3,
             zIndex: 1000,

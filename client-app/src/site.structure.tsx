@@ -1,8 +1,7 @@
 // 사이트에서 사용자와 관리자가 접속할 수 있는 모든 페이지 명시
 // 메뉴에 출력되지 않더라도 존재하는 페이지라면 반드시 명시
 
-import { SvgIconTypeMap } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { SvgIconProps } from '@mui/material/SvgIcon';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import Groups3Icon from '@mui/icons-material/Groups3';
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -12,10 +11,11 @@ import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 
 // 페이지 구조 저장 변수 인터페이스
 export interface ISiteStructure {
-    id: string;                                              // 페이지 또는 메뉴 ID
+    id: string;                                              // 페이지 또는 메뉴 ID (@: 현재 페이지에 연결)
     label: string;                                           // 페이지 이름 또는 메뉴명
     display?: boolean;                                       // 메뉴로 출력하는지의 여부
-    icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">>;  // 메뉴 아이콘
+    icon?: React.ElementType<SvgIconProps>;  // 메뉴 아이콘
+    path?: string;                                           // 메뉴 경로 (필요시에만 작성)
     children?: ISiteStructure[];                             // 자식 메뉴 배열
 }
 
@@ -108,6 +108,7 @@ export const site_structure: ISiteStructure[] = [
             {
                 id: '@',
                 label: '국방부 2030 자문단',
+                icon: MilitaryTechIcon,
                 display: true,
             },
         ],

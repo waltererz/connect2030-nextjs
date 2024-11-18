@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next-nprogress-bar';
 import Backdrop from '@mui/material/Backdrop';
 
+// 특정한 버튼 없이 Backdrop 생성
 export default function BackdropWithoutButton({ zIndex }: { zIndex?: number }): React.ReactNode {
 
     const router = useRouter();

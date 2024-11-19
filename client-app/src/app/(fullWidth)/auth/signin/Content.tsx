@@ -9,7 +9,7 @@ import SignInFormControl from './FormControl';
 export default async function Content(): Promise<React.ReactNode> {
     return (
         <>
-            <BackdropWithoutButton zIndex={1000} />
+            <BackdropWithoutButton zIndex={2000} />
             <Box sx={{
                 position: 'absolute',
                 top: '3%',
@@ -20,7 +20,7 @@ export default async function Content(): Promise<React.ReactNode> {
                 width: '100%',
                 height: '100%',
                 p: '24px',
-                zIndex: 1001,
+                zIndex: 2001,
             }}>
                 <Box sx={{
                     display: 'flex',

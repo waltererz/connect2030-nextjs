@@ -23,8 +23,7 @@ export default async function NavBar(): Promise<React.ReactNode> {
             width: '100%',
             background: 'rgba(9, 0, 30, 0.9)',
             backdropFilter: 'blur(5px)',
-            borderBottom: '1px solid #200b52',
-            zIndex: 1200,
+            zIndex: 1001,
         }}>
             <Box sx={{
                 display: 'flex',
@@ -34,7 +33,7 @@ export default async function NavBar(): Promise<React.ReactNode> {
                 width: '100%',
                 height: '75px',
                 maxWidth: '1536px',                        // Extra Large
-                px: '24px',
+                px: { xs: '10px', lg: '24px' },
                 boxSizing: 'border-box',
             }}>
                 <Box sx={{

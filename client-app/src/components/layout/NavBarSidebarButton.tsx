@@ -22,8 +22,8 @@ export default function NavBarSidebarButton(): React.ReactNode {
                 onClick={toggleDrawer}
                 sx={{
                     display: { md: 'flex', lg: 'none' },
-                    backgroundColor: 'var(--primary-light)',
                     color: '#ffffff',
+                    backgroundColor: 'initial',
                     cursor: 'pointer',
                     mr: '10px',
                 }}>

@@ -11,8 +11,8 @@ export default function NavBarSignOutButton(): React.ReactNode {
         <Avatar
             onClick={() => supabaseSignOut()}
             sx={{
-                backgroundColor: '#ffffff',
-                color: '#555555',
+                backgroundColor: 'initial',
+                color: '#ffffff',
                 cursor: 'pointer',
             }}>
             <LogoutIcon />

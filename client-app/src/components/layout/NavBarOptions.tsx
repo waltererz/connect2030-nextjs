@@ -30,8 +30,8 @@ export default async function NavBarOptions(): Promise<React.ReactNode> {
     return (
         <>
             <Avatar sx={{
-                backgroundColor: '#ffffff',
-                color: '#555555',
+                backgroundColor: 'initial',
+                color: '#ffffff',
                 cursor: 'pointer',
                 mr: 2,
             }}>

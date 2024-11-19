@@ -49,7 +49,7 @@ export default function Drawer(): React.ReactNode {
             position: 'absolute',
             flexGrow: 0,
             width: '300px',
-            minHeight: '50vh',
+            minHeight: '300px',
             boxSizing: 'border-box',
             mx: '24px',
             py: '25px',
@@ -57,7 +57,8 @@ export default function Drawer(): React.ReactNode {
             borderRadius: '15px',
             backgroundColor: '#ffffff',
             border: '1px solid #efefef',
-            zIndex: 1110,
+            boxShadow: '0px 0px 2px 0px rgba(220, 220, 220, 0.5)',
+            zIndex: 800,
         }}>
             <List
                 component="nav"
@@ -81,12 +82,12 @@ export default function Drawer(): React.ReactNode {
                             }
                             sx={{
                                 mb: 2,
-                                borderRadius: '15px',
+                                borderRadius: '6px',
                                 '&.Mui-selected': {
-                                    backgroundColor: 'var(--primary-main)',
+                                    backgroundColor: 'var(--primary-light)',
                                     color: '#ffffff',
                                     ':hover': {
-                                        backgroundColor: 'var(--primary-main)',
+                                        backgroundColor: 'var(--primary-light)',
                                         opacity: 1,
                                     },
                                 },
@@ -110,7 +111,7 @@ export default function Drawer(): React.ReactNode {
                                 sx={{
                                     '& .MuiTypography-root': {
                                         pt: '1px',
-                                        fontSize: '1.2rem',
+                                        fontSize: '1.1rem',
                                     }
                                 }}
                             />

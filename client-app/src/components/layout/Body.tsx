@@ -8,7 +8,6 @@ export default function Body({ children }: { children: React.ReactNode }): React
             flexDirection: 'column',
             alignItems: 'center',
             width: '100%',
-            height: '100vh',
         }}>
             <Box sx={{
                 display: 'flex',
@@ -16,7 +15,7 @@ export default function Body({ children }: { children: React.ReactNode }): React
                 boxSizing: 'border-box',
                 maxWidth: '1536px',       // Extra Large
                 width: '100%',
-                height: '100%',
+                minHeight: '80vh',
                 pt: '140px',
             }}>
                 {children}

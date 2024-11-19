@@ -11,6 +11,7 @@ import { SvgIconProps } from '@mui/material/SvgIcon';
 import { TreeItem2Content, TreeItem2GroupTransition, TreeItem2IconContainer, TreeItem2Root } from '@mui/x-tree-view/TreeItem2';
 import { TreeItem2Provider } from '@mui/x-tree-view/TreeItem2Provider';
 import { TreeItem2Icon } from '@mui/x-tree-view/TreeItem2Icon';
+import { SxProps } from '@mui/material/styles';
 
 // 트리 스타일 적용을 위한 react 모듈 확장
 declare module 'react' {
@@ -28,6 +29,7 @@ interface StyledTreeItemProps extends Omit<UseTreeItem2Parameters, 'rootRef'>, R
     color?: string;
     colorForDarkMode?: string;
     path?: string;
+    sx?: SxProps,
     labelIcon: React.ElementType<SvgIconProps> | undefined;
     labelInfo?: string;
     handler?: () => void;                   // toggleDrawer

@@ -72,11 +72,17 @@ export default function MobileDrawer({ open, handler }: { open: boolean, handler
                 width: '300px',
             }}>
                 <Box sx={{
-                    height: '60px',
+                    height: '75px',
                     boxSizing: 'border-box',
+                    borderBottom: '1px solid #efefef',
                     p: 2,
+                    mb: 2,
                     textAlign: 'center',
                     fontWeight: 600,
+                    fontSize: '1.2rem',
+                    alignContent: 'center',
+                    backgroundColor: 'var(--primary-main)',
+                    color: '#ffffff',
                 }}>
                     CONNECT 2030
                 </Box>
@@ -93,7 +99,7 @@ export default function MobileDrawer({ open, handler }: { open: boolean, handler
                     }}
                 >
                     {siteStructure.map((item, index) => (
-                        <CustomTreeItem handler={handler} key={`1-${index}`} itemId={item.id} label={item.label} labelIcon={item.icon} path={item.path}>
+                        <CustomTreeItem sx={{ mb: 2 }} handler={handler} key={`1-${index}`} itemId={item.id} label={item.label} labelIcon={item.icon} path={item.path}>
                             {item.children && item.children.map((subitem, subindex) => (
                                 <CustomTreeItem handler={handler} key={`2-${subindex}`} itemId={subitem.id} label={subitem.label} labelIcon={subitem.icon} path={subitem.path} />
                             ))}

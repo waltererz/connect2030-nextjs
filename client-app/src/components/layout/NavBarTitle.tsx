@@ -14,12 +14,11 @@ export default function NavBarTitle(): React.ReactNode {
             sx={{
                 boxSizing: 'border-box',
                 color: '#ffffff',
-                fontFamily: 'Do Hyeon',
                 fontSize: '1.5rem',
                 cursor: 'pointer',
             }}
         >
-            Connect 2030
+            CONNECT 2030
         </Box>
     );
 }

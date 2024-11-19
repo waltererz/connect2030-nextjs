@@ -6,7 +6,7 @@ export default function Footer(): React.ReactNode {
         <Box sx={{
             width: '100%',
             height: '300px',
-            pt: '50px',
+            mt: '50px',
             backgroundColor: '#000000',
         }}>
 

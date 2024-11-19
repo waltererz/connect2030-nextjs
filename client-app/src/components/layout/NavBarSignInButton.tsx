@@ -14,8 +14,8 @@ export default function NavBarSignInButton(): React.ReactNode {
         <Avatar
             onClick={() => router.push('/auth/signin')}
             sx={{
-                backgroundColor: '#ffffff',
-                color: '#555555',
+                backgroundColor: 'initial',
+                color: '#ffffff',
                 cursor: 'pointer',
             }}>
             <LockOpenIcon />

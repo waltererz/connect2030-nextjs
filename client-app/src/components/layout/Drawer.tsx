@@ -46,17 +46,18 @@ export default function Drawer(): React.ReactNode {
     return (
         <Box sx={{
             display: { xs: 'none', lg: 'block' },
-            position: 'fixed',
+            position: 'absolute',
             flexGrow: 0,
             width: '300px',
-            height: '100vh',
+            minHeight: '50vh',
             boxSizing: 'border-box',
             mx: '24px',
             py: '25px',
             px: '20px',
-            borderTopLeftRadius: '35px',
-            borderTopRightRadius: '35px',
+            borderRadius: '15px',
             backgroundColor: '#ffffff',
+            border: '1px solid #efefef',
+            zIndex: 1110,
         }}>
             <List
                 component="nav"
@@ -80,7 +81,7 @@ export default function Drawer(): React.ReactNode {
                             }
                             sx={{
                                 mb: 2,
-                                borderRadius: '40px',
+                                borderRadius: '15px',
                                 '&.Mui-selected': {
                                     backgroundColor: 'var(--primary-main)',
                                     color: '#ffffff',
@@ -139,7 +140,7 @@ export default function Drawer(): React.ReactNode {
                                                 sx={{
                                                     height: '40px',
                                                     mb: 1,
-                                                    borderRadius: '40px',
+                                                    borderRadius: '15px',
                                                     color: '#999999',
                                                     '&.Mui-selected': {
                                                         backgroundColor: '#ffffff',

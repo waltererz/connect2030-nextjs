@@ -10,7 +10,7 @@ export default function ProgressBar({ children }: { children: React.ReactNode })
     return (
         <>
             {children}
-            <AppProgressBar height="4px" color={theme.palette.primary.main} options={{ showSpinner: false }} shallowRouting />
+            <AppProgressBar height="4px" color={theme.palette.primary.light} options={{ showSpinner: false }} shallowRouting />
         </>
     )
 }

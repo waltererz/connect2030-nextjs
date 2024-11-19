@@ -90,13 +90,13 @@ export default function Breadcrumbs(): React.ReactNode {
             >
                 <ArrowBackIcon sx={{
                     mr: '7px',
-                    fontSize: '1.4rem',
+                    fontSize: '1.3rem',
                 }} />
                 <Typography
                     component="div"
                     sx={{
                         mt: '-2px',
-                        fontSize: '1.1rem',
+                        fontSize: '1.0rem',
                         fontWeight: 400,
                         boxSizing: 'border-box',
                     }}

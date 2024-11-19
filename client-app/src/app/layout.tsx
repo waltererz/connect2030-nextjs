@@ -5,6 +5,7 @@ import { theme } from '@/styles/theme';
 import ProgressBar from '@/components/layout/ProgressBar';
 import NavBar from '@/components/layout/NavBar';
 import Body from '@/components/layout/Body';
+import Footer from '@/components/layout/Footer';
 import '@fontsource/inter';
 import '@/styles/globals.css';
 
@@ -19,7 +20,6 @@ export const metadata: Metadata = {
   description: '2030 자문단과 직접 소통하며 청년세대 의견을 정책에 반영하는 새로운 플랫폼',
   keywords: ['청년자문단', '2030자문단', '청년'],
 };
-
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
@@ -36,6 +36,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 {navBar}
                 {children}
               </Body>
+              <Footer />
             </AppRouterCacheProvider>
           </ProgressBar>
         </ThemeProvider>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Box from '@mui/material/Box';
-import NavBarAvatar from './NavBarAvatar';
+import NavBarTitle from './NavBarTitle';
 import NavBarMenus from './NavBarMenus';
 import NavBarOptions from './NavBarOptions';
 import NavBarSidebarButton from './NavBarSidebarButton';
@@ -16,32 +16,50 @@ export default async function NavBar(): Promise<React.ReactNode> {
         <Box sx={{
             position: 'fixed',
             top: 0,
+            left: 0,
             display: 'flex',
             flexDirection: 'row',
-            background: 'rgba(255,255,255,0)',
-            backdropFilter: 'blur(6px)',
-            alignItems: 'center',
+            justifyContent: 'center',
             width: '100%',
-            maxWidth: '1536px',                        // Extra Large
-            boxSizing: 'border-box',
-            p: 3,
-            zIndex: 1000,
+            background: 'rgba(9, 0, 30, 0.9)',
+            backdropFilter: 'blur(5px)',
+            borderBottom: '1px solid #200b52',
+            zIndex: 1200,
         }}>
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'row',
-                flexGrow: 1,
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+                height: '75px',
+                maxWidth: '1536px',                        // Extra Large
+                px: '24px',
+                boxSizing: 'border-box',
             }}>
-                <NavBarSidebarButton />
-                <NavBarAvatar />
-                <NavBarMenus />
-            </Box>
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                flexGrow: 0,
-            }}>
-                {navBarOptions}
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexGrow: 0,
+                }}>
+                    <NavBarSidebarButton />
+                    <NavBarTitle />
+                </Box>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    flexGrow: 1,
+                }}>
+                    <NavBarMenus />
+                </Box>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexGrow: 0,
+                }}>
+                    {navBarOptions}
+                </Box>
             </Box>
         </Box>
     );

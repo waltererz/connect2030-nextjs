@@ -3,7 +3,8 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next-nprogress-bar';
-import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Box';
+import Box from '@mui/material/Box';
 import { site_structure } from '@/site.structure';
 
 export default function NavBarMenus(): React.ReactNode {
@@ -21,36 +22,29 @@ export default function NavBarMenus(): React.ReactNode {
     return (
         <>
             {site_structure.map((item, index) => (
-                <Chip
+                <Button
                     key={`mainitem-${index}`}
-                    icon={item.icon ? <item.icon /> : undefined}
-                    label={item.label}
-                    clickable={true}
                     className={current_path[1] == item.id ? 'selected' : ''}
                     onClick={() => router.push(`/${item.id}`)}
                     sx={{
                         display: { xs: 'none', lg: (item.display ? 'flex' : 'none') },
+                        justifyContent: 'center',
                         minWidth: '100px',
-                        height: '40px',
-                        mr: '12px',
-                        p: '5px',
+                        height: '75px',
+                        p: '8px',
                         boxSizing: 'border-box',
-                        borderRadius: '50px',
-                        color: '#666666',
-                        backgroundColor: '#e5e5e5',
+                        color: '#aaaaaa',
+                        cursor: 'pointer',
                         ':last-child': {
-                            mr: '0px',
+                            p: 0,
                         },
                         '&.selected': {
-                            backgroundColor: '#3c3c3c',
-                            color: '#f5f5f5',
-                            fontWeight: 600,
+                            borderBottom: '3px solid var(--primary-light)',
+                            pt: '11px',
+                            color: '#ffffff',
                             '& .MuiSvgIcon-root': {
-                                color: '#f5f5f5',
+                                color: '#ffffff',
                             },
-                        },
-                        '& .MuiSvgIcon-root': {
-                            ml: '10px',
                         },
                         '& .MuiChip-label': {
                             pl: '15px',
@@ -58,7 +52,12 @@ export default function NavBarMenus(): React.ReactNode {
                             fontWeight: 400,
                         }
                     }}
-                />
+                >
+                    <Box sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}>{item.label}</Box>
+                </Button>
             ))}
         </>
     )

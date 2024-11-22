@@ -24,7 +24,9 @@ const resolveDuplicateIds = (targetData: ISiteStructure[], parent: string = '') 
         // 새로운 아이템 객체
         // 복제하지 않으면 기존 객체를 참조하여 구조 자체가 변경되므로 반드시 복제하여 사용
         // 중첩 오브젝트는 재귀함수를 통해 처리하므로 깊은 복제는 필요하지 않음
-        let newItem: ISiteStructure = { ...item };
+        const newItem: ISiteStructure = { ...item };
+
+        // 새롭게 작성되는 자식 노드
         let newChildren: ISiteStructure[] = [];
 
         // 기존의 ID와 부모 노드 ID를 이용하여 페이지 경로(path)를 만들고, index를 ID에 입력

@@ -1,14 +1,12 @@
-'use server'
-
 import React from 'react';
 import Box from '@mui/material/Box';
 import Breadcrumbs from './Breadcrumbs';
 
-export default async function Content({ children, fullWidth = false, breadcrumbs = true }: { children: React.ReactNode, fullWidth?: boolean, breadcrumbs?: boolean }): Promise<React.ReactNode> {
+export default function Content({ children, fullWidth = false, breadcrumbs = true }: { children: React.ReactNode, fullWidth?: boolean, breadcrumbs?: boolean }): React.ReactNode {
     return (
         <>
             <Box sx={{
-                ml: (fullWidth != undefined && fullWidth) ? '24px' : { xs: '10px', lg: '348px' },
+                ml: (fullWidth != undefined && fullWidth) ? { xs: '10px', lg: '24px' } : { xs: '10px', lg: '0px' },
                 flexGrow: 1,
             }}>
                 <Box sx={{

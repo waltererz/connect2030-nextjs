@@ -146,7 +146,10 @@ export const CustomTreeItem = React.forwardRef(function CustomTreeItem(props: St
                                 flexGrow: 1,
                                 fontSize: '1.0rem',
                             }
-                        })} onClick={() => { path && router.push(path); handler && handler(); }} />
+                        })} onClick={() => {
+                            if (path) router.push(path);
+                            if (handler) handler();
+                        }} />
                         <Typography variant="caption" color="inherit">{labelInfo}</Typography>
                     </Box>
                 </CustomTreeItemContent>

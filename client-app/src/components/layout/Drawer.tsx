@@ -41,19 +41,22 @@ export default function Drawer(): React.ReactNode {
             // 자식 메뉴가 존재하지 않으면 공백 반환
             setChildren([]);
         }
-    }, [pathname]);
+    }, [pathname, current_path]);
 
     return (
         <Box sx={{
             display: { xs: 'none', lg: 'block' },
-            position: 'absolute',
+            position: 'sticky',
+            top: '100px',
             flexGrow: 0,
             width: '300px',
-            minHeight: '300px',
+            height: 'fit-content',
+            minHeight: '250px',
             boxSizing: 'border-box',
             mx: '24px',
-            py: '25px',
-            px: '20px',
+            pt: '20px',
+            pb: '10px',
+            px: '12px',
             borderRadius: '15px',
             backgroundColor: '#ffffff',
             border: '1px solid #efefef',

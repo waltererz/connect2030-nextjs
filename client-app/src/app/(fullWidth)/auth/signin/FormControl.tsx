@@ -13,9 +13,6 @@ export default function SignInFormControl(): React.ReactNode {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
-    // 로그인 중 상태를 확인하기 위한 상태
-    const [pending, setPending] = useState<boolean>(false);
-
     // 양식 전달 함수
     const handleSubmit = async () => {
         // 이메일과 패스워드가 입력되었는지 확인

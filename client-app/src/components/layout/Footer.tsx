@@ -8,6 +8,7 @@ export default function Footer(): React.ReactNode {
             height: '300px',
             mt: '50px',
             backgroundColor: '#000000',
+            color: '#ffffff',
         }}>
 
         </Box>

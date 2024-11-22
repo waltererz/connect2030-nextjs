@@ -35,7 +35,7 @@ export default function Breadcrumbs(): React.ReactNode {
     useEffect(() => {
 
         // 상태 초기화
-        setBreadcrumbs((prev) => [
+        setBreadcrumbs(() => [
             {
                 id: '/',
                 label: 'CONNECT 2030',
@@ -74,7 +74,7 @@ export default function Breadcrumbs(): React.ReactNode {
             }
         }
 
-    }, [pathname]);
+    }, [pathname, current_path]);
 
     return (
         <Box sx={{

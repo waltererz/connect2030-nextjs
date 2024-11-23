@@ -78,7 +78,9 @@ export default function Breadcrumbs(): React.ReactNode {
 
     return (
         <Box sx={{
-            height: '47px',
+            mb: 3,
+            pb: 2,
+            borderBottom: '1px solid #efefef',
         }}>
             <Typography
                 component="div"

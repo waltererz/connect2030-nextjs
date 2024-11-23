@@ -14,7 +14,7 @@ export default function Content({ children, fullWidth = false, breadcrumbs = tru
                     top: 0,
                     left: 0,
                     width: '100%',
-                    height: '325px',
+                    height: { xs: '225px', lg: '325px' },
                     backgroundColor: 'var(--primary-main)',
                     zIndex: -1,
                 }} />
@@ -22,12 +22,13 @@ export default function Content({ children, fullWidth = false, breadcrumbs = tru
                     minHeight: '100%',
                     boxSizing: 'border-box',
                     py: '25px',
-                    px: '32px',
+                    px: { xs: '20px', lg: '32px' },
                     mr: { xs: '10px', lg: '24px' },
                     borderRadius: '15px',
                     backgroundColor: '#ffffff',
                     border: '1px solid #efefef',
-                    boxShadow: '0px 0px 2px 0px rgba(220, 220, 220, 0.5)',
+                    boxShadow: '0px 0px 20px 0px rgba(220, 220, 220, 0.5)',
+                    color: '#333333',
                 }}>
                     <Box>
                         {breadcrumbs != undefined && breadcrumbs && <Breadcrumbs />}

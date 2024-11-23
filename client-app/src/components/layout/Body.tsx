@@ -16,7 +16,7 @@ export default function Body({ children }: { children: React.ReactNode }): React
                 maxWidth: '1536px',       // Extra Large
                 width: '100%',
                 minHeight: '80vh',
-                pt: '140px',
+                pt: { xs: '75px', lg: '140px' },
             }}>
                 {children}
             </Box>

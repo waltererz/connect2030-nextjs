@@ -74,7 +74,7 @@ export default function MobileDrawer({ open, handler }: { open: boolean, handler
                 width: '300px',
             }}>
                 <Box sx={{
-                    height: '75px',
+                    height: '76px',
                     boxSizing: 'border-box',
                     borderBottom: '1px solid #efefef',
                     p: 2,

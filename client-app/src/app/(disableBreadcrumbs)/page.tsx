@@ -1,6 +1,8 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
+import PageTitleBox from '@/components/PageTitleBox';
+import PageContentBox from '@/components/PageContentBox';
 
 const dummy = [
   {
@@ -23,22 +25,10 @@ const dummy = [
 export default function Page() {
   return (
     <>
-      <Box
-        component="div"
-        sx={{
-          fontSize: '3.0rem',
-        }}
-      >
-        Connect 2030
-      </Box>
-      <Box
-        component="div"
-        sx={{
-          fontSize: '2.0rem',
-        }}
-      >
+      <PageTitleBox>Connect 2030</PageTitleBox>
+      <PageContentBox>
         테스트 페이지
-      </Box>
+      </PageContentBox>
       <Box sx={{ mt: '50px' }}>
         {dummy.map((article, index) => (
           <Box
@@ -57,7 +47,6 @@ export default function Page() {
                 width: '64px',
                 height: '64px',
                 borderRadius: '17px',
-                fontSize: '1.8rem',
               }}
             >
               H
@@ -65,13 +54,11 @@ export default function Page() {
             <Box sx={{ ml: '15px', flexGrow: 1, }}>
               <Box sx={{
                 fontWeight: 900,
-                fontSize: '1.2rem',
                 textAlign: 'justify',
               }}>
                 {article.subject}
               </Box>
               <Box sx={{
-                fontSize: '1.0rem',
                 lineHeight: 1.1,
                 color: '#777777',
                 textAlign: 'justify',

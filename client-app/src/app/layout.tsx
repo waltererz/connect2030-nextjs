@@ -11,8 +11,8 @@ import '@/styles/globals.css';
 
 // 타이틀 템플릿
 const title = {
-  default: '2030 Connect - 청년과 함께하는 정책',
-  template: '%s | 2030 Connect',
+  default: '커넥트 2030 - 청년과 함께하는 정책',
+  template: '%s | CONNECT 2030',
 }
 
 // 사이트 설명

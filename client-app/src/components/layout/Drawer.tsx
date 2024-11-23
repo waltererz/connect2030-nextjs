@@ -60,7 +60,7 @@ export default function Drawer(): React.ReactNode {
             borderRadius: '15px',
             backgroundColor: '#ffffff',
             border: '1px solid #efefef',
-            boxShadow: '0px 0px 2px 0px rgba(220, 220, 220, 0.5)',
+            boxShadow: '0px 0px 20px 0px rgba(220, 220, 220, 0.5)',
             zIndex: 800,
         }}>
             <List

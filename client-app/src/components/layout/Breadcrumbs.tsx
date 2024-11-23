@@ -74,7 +74,7 @@ export default function Breadcrumbs(): React.ReactNode {
             }
         }
 
-    }, [pathname, current_path]);
+    }, [pathname]);
 
     return (
         <Box sx={{
